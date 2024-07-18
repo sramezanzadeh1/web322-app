@@ -53,6 +53,20 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+    res.redirect('/about'); 
+  });
+
+  app.get('/shop', (req, res) => {
+    storeService.getPublishedItems()
+        .then(data => {
+            res.render('shop', { items: data });
+        })
+        .catch(err => {
+            res.render('shop', { message: 'Error retrieving items' });
+        });
+});
+
 app.get('/about', (req, res) => {
   res.render('about');
 });
@@ -62,7 +76,7 @@ app.get('/items/add', (req, res) => {
 });
 
 app.get('/items', (req, res) => {
-  storeService.getItems().then((data) => {
+  storeService.getAllItems().then((data) => {
     res.render('items', { items: data });
   }).catch((err) => {
     res.render('items', { message: 'no results' });
