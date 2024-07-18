@@ -10,13 +10,14 @@ Vercel Web App URL:
 GitHub Repository URL: https://github.com/sramezanzadeh1/web322-app
 
 ********************************************************************************/ 
-
 const express = require('express');
 const app = express();
 const path = require('path');
 const storeService = require('./store-service');
+const bodyParser = require('body-parser');
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.redirect('/about');
@@ -50,6 +51,28 @@ app.get('/categories', (req, res) => {
     storeService.getCategories()
         .then(data => {
             res.json(data);
+        })
+        .catch(err => {
+            res.status(500).json({ message: err });
+        });
+});
+
+app.get('/items/add', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'addItem.html'));
+});
+
+app.post('/items/add', (req, res) => {
+    const newItem = {
+        title: req.body.itemTitle,
+        description: req.body.itemDescription,
+        price: req.body.itemPrice,
+        category: req.body.itemCategory,
+        published: !!req.body.itemPublished,
+    };
+
+    storeService.addItem(newItem)
+        .then(() => {
+            res.redirect('/items');
         })
         .catch(err => {
             res.status(500).json({ message: err });
