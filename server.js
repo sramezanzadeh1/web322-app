@@ -11,84 +11,72 @@ GitHub Repository URL: https://github.com/sramezanzadeh1/web322-app
 
 ********************************************************************************/ 
 const express = require('express');
+const exphbs = require('express-handlebars');
 const app = express();
-const path = require('path');
 const storeService = require('./store-service');
-const bodyParser = require('body-parser');
+
+const handlebars = exphbs.create({
+  extname: '.hbs',
+  helpers: {
+    navLink: function (url, options) {
+      return (
+        '<li class="nav-item"><a ' +
+        (url == app.locals.activeRoute ? 'class="nav-link active"' : 'class="nav-link"') +
+        ' href="' +
+        url +
+        '">' +
+        options.fn(this) +
+        '</a></li>'
+      );
+    },
+    equal: function (lvalue, rvalue, options) {
+      if (arguments.length < 3)
+        throw new Error("Handlebars Helper equal needs 2 parameters");
+      if (lvalue != rvalue) {
+        return options.inverse(this);
+      } else {
+        return options.fn(this);
+      }
+    }
+  }
+});
+
+app.engine('.hbs', handlebars.engine);
+app.set('view engine', '.hbs');
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.redirect('/about');
+app.use((req, res, next) => {
+  let route = req.path.substring(1);
+  app.locals.activeRoute = '/' + (isNaN(route.split('/')[1]) ? route.replace(/\/(?!.*)/, '') : route.replace(/\/(.*)/, ''));
+  app.locals.viewingCategory = req.query.category;
+  next();
 });
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'about.html'));
-});
-
-app.get('/shop', (req, res) => {
-    storeService.getPublishedItems()
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            res.status(500).json({ message: err });
-        });
-});
-
-app.get('/items', (req, res) => {
-    storeService.getAllItems()
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            res.status(500).json({ message: err });
-        });
-});
-
-app.get('/categories', (req, res) => {
-    storeService.getCategories()
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            res.status(500).json({ message: err });
-        });
+  res.render('about');
 });
 
 app.get('/items/add', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'addItem.html'));
+  res.render('addItem');
 });
 
-app.post('/items/add', (req, res) => {
-    const newItem = {
-        title: req.body.itemTitle,
-        description: req.body.itemDescription,
-        price: req.body.itemPrice,
-        category: req.body.itemCategory,
-        published: !!req.body.itemPublished,
-    };
-
-    storeService.addItem(newItem)
-        .then(() => {
-            res.redirect('/items');
-        })
-        .catch(err => {
-            res.status(500).json({ message: err });
-        });
+app.get('/items', (req, res) => {
+  storeService.getItems().then((data) => {
+    res.render('items', { items: data });
+  }).catch((err) => {
+    res.render('items', { message: 'no results' });
+  });
 });
 
-app.use((req, res) => {
-    res.status(404).send('Page Not Found');
+app.get('/categories', (req, res) => {
+  storeService.getCategories().then((data) => {
+    res.render('categories', { categories: data });
+  }).catch((err) => {
+    res.render('categories', { message: 'no results' });
+  });
 });
 
-storeService.initialize()
-    .then(() => {
-        app.listen(process.env.PORT || 8080, () => {
-            console.log(`Express http server listening on port ${process.env.PORT || 8080}`);
-        });
-    })
-    .catch(err => {
-        console.error(`Unable to start server: ${err}`);
-    });
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
