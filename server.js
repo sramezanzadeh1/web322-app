@@ -31,7 +31,7 @@ const handlebars = exphbs.create({
     },
     equal: function (lvalue, rvalue, options) {
       if (arguments.length < 3)
-        throw new Error("Handlebars Helper equal needs 2 parameters");
+        throw new Error("Handlebars Helper equal requirement is 2 parameters");
       if (lvalue != rvalue) {
         return options.inverse(this);
       } else {
@@ -63,7 +63,7 @@ app.get('/', (req, res) => {
             res.render('shop', { items: data });
         })
         .catch(err => {
-            res.render('shop', { message: 'Error retrieving items' });
+            res.render('shop', { message: 'encountered error while retrieving items' });
         });
 });
 
