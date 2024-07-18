@@ -1,0 +1,102 @@
+[
+    {
+       "id":1,
+       "category":2,
+       "postDate":"2024-05-14",
+       "featureImage":"https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/alienware-notebooks/alienwar-x16-mlk/gallery/notebook-alienware-x16-r2-gray-gallery-13.psd?fmt=pjpg&pscan=auto&scl=1&wid=4499&hei=3214&qlt=100,1&resMode=sharp2&size=4499,3214&chrss=full&imwidth=5000",
+       "price":1999.99,
+       "title":"Alienware x16 R2 Gaming Laptop",
+       "body":"With exclusive AlienFX lighting, jaw-dropping performance, advanced cooling and the smooth comfort of its stunning Lunar Silver finish, the x16 R2 is our most premium gaming laptop, in-game and out.",
+       "published":true
+    },
+    {
+       "id":2,
+       "category":2,
+       "postDate":"2024-05-15",
+       "featureImage":"https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4mRni?ver=a707&q=90&m=6&h=270&w=270&b=%23FF2F2F2F&f=jpg&o=f&aim=true",
+       "price":649.99,
+       "title":"XBOX SERIES X",
+       "body":"Make the most of every gaming minute with Quick Resume, lighting-fast load times, and gameplay of up to 120 FPS. all powered by Xbox Velocity Architecture.",
+       "published":true
+    },
+    {
+       "id":3,
+       "category":2,
+       "postDate":"2024-05-16",
+       "featureImage":"https://cdn.mos.cms.futurecdn.net/HkdMToxijoHfz4JwUgfh3G.jpg",
+       "price":649.99,
+       "title":"PS5™ console",
+       "body":"Experience lightning-fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers and 3D Audio*, and an all-new generation of incredible PlayStation games.",
+       "published":true
+    },
+    {
+       "id":4,
+       "category":3,
+       "postDate":"2024-05-17",
+       "featureImage":"https://dummyimage.com/200x200/000/fff",
+       "price":459.99,
+       "title":"",
+       "body":"",
+       "published":true
+    },
+    {
+       "id":5,
+       "category":3,
+       "postDate":"2024-05-18",
+       "featureImage":"https://dummyimage.com/200x200/000/fff",
+       "price":39.99,
+       "title":"TShirt",
+       "body":"",
+       "published":true
+    },
+    {
+       "id":6,
+       "category":3,
+       "postDate":"2024-05-19",
+       "featureImage":"https://dummyimage.com/200x200/000/fff",
+       "price":29.99,
+       "title":"Shorts",
+       "body":"",
+       "published":true
+    },
+    {
+       "id":7,
+       "category":4,
+       "postDate":"2024-05-20",
+       "featureImage":"https://dummyimage.com/200x200/000/fff",
+       "price":19.99,
+       "title":"Baseball",
+       "body":"",
+       "published":true
+    },
+    {
+       "id":8,
+       "category":4,
+       "postDate":"2024-05-21",
+       "featureImage":"https://dummyimage.com/200x200/000/fff",
+       "price":99.99,
+       "title":"Soccer Ball",
+       "body":"",
+       "published":true
+    },
+    {
+       "id":9,
+       "category":4,
+       "postDate":"2024-05-16",
+       "featureImage":"https://dummyimage.com/200x200/000/fff",
+       "price":99.99,
+       "title":"Dog Food",
+       "body":"",
+       "published":true
+    },
+    {
+       "id":10,
+       "category":3,
+       "postDate":"2024-05-16",
+       "featureImage":"https://dummyimage.com/200x200/000/fff",
+       "price":9.99,
+       "title":"Fish Food",
+       "body":"",
+       "published":true
+    }
+ ] 
