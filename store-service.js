@@ -6,7 +6,7 @@ let categories = [];
 
 function initialize() {
     return new Promise((resolve, reject) => {
-        fs.readFile(path.join(__dirname, 'data', 'items.json'), 'utf8', (err, data) => {
+        fs.readFile('./data/items.json', 'utf8', (err, data) => {
             if (err) {
                 reject(err);
                 return;
@@ -14,7 +14,7 @@ function initialize() {
 
             items = JSON.parse(data);
 
-            fs.readFile(path.join(__dirname, 'data', 'categories.json'), 'utf8', (err, data) => {
+            fs.readFile('./data/categories.json', 'utf8', (err, data) => {
                 if (err) {
                     reject(err);
                     return;
@@ -67,7 +67,7 @@ function addItem(item) {
         item.id = items.length + 1;
         items.push(item);
 
-        fs.writeFile(path.join(__dirname, 'data', 'items.json'), JSON.stringify(items, null, 4), 'utf8', (err) => {
+        fs.writeFile('./data/items.json', JSON.stringify(items, null, 4), 'utf8', (err) => {
             if (err) {
                 reject(err);
                 return;
