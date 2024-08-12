@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const DataTypes = Sequelize.DataTypes;
 
-const sequelize = new Sequelize('postgresql://Shayan%27s%20Shop_owner:qCmoeIlXgA51@ep-red-credit-a5k0zzmx.us-east-2.aws.neon.tech/Shayan%27s%20Shop?sslmode=require');
+const sequelize = new Sequelize('postgresql://neondb_owner:9YhA4gURQCFl@ep-patient-bread-a5cmwjn3.us-east-2.aws.neon.tech/neondb?sslmode=require');
 
 const Item = sequelize.define('Item', {
   id: {
